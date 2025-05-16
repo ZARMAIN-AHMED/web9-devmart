@@ -1,16 +1,12 @@
-# models/payment.py
 import stripe
-import os
-from dotenv import load_dotenv
+import streamlit as st
 
-load_dotenv()  
-
-stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+stripe.api_key = st.secrets["STRIPE_SECRET_KEY"]
 
 class Payment:
     def __init__(self, user, amount):
         self.user = user
-        self.amount = int(amount * 100) 
+        self.amount = int(amount * 100)
 
     def process_payment(self):
         try:
@@ -28,7 +24,7 @@ class Payment:
                     "quantity": 1,
                 }],
                 mode="payment",
-                success_url="https://devmart-demo.streamlit.app/success",  
+                success_url="https://devmart-demo.streamlit.app/success",
                 cancel_url="https://devmart-demo.streamlit.app/cancel",
                 customer_email=self.user.email
             )
@@ -36,3 +32,4 @@ class Payment:
         except Exception as e:
             print("Stripe error:", e)
             return None
+
