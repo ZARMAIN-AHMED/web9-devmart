@@ -1,12 +1,16 @@
+# models/payment.py
 import stripe
-import streamlit as st
+import os
+from dotenv import load_dotenv
 
-stripe.api_key = st.secrets["STRIPE_SECRET_KEY"]
+load_dotenv()  
+
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
 
 class Payment:
     def __init__(self, user, amount):
         self.user = user
-        self.amount = int(amount * 100)
+        self.amount = int(amount * 100) 
 
     def process_payment(self):
         try:
@@ -24,8 +28,8 @@ class Payment:
                     "quantity": 1,
                 }],
                 mode="payment",
-                success_url="https://devmart-demo.streamlit.app/success",
-                cancel_url="https://devmart-demo.streamlit.app/cancel",
+                success_url="https://example.com/success",  # Replace these with actual URLs
+                cancel_url="https://example.com/cancel",
                 customer_email=self.user.email
             )
             return session.url
