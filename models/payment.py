@@ -28,8 +28,8 @@ class Payment:
                     "quantity": 1,
                 }],
                 mode="payment",
-                success_url="https://example.com/success",  # Replace these with actual URLs
-                cancel_url="https://example.com/cancel",
+                success_url="https://devmart-demo.streamlit.app/success",  
+                cancel_url="https://devmart-demo.streamlit.app/cancel",
                 customer_email=self.user.email
             )
             return session.url
