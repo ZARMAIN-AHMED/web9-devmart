@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv()  
 
+
 stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+
+stripe.api_key = os.getenv("STRIPE_API_KEY")
 
 class Payment:
     def __init__(self, user, amount):
