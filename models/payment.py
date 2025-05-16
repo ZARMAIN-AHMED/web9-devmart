@@ -28,7 +28,7 @@ class Payment:
                     "quantity": 1,
                 }],
                 mode="payment",
-                success_url="https://devmart-demo.streamlit.app/success",
+                success_url="https://devmart-demo.streamlit.app/success",  
                 cancel_url="https://devmart-demo.streamlit.app/cancel",
                 customer_email=self.user.email
             )
@@ -36,3 +36,4 @@ class Payment:
         except Exception as e:
             print("Stripe error:", e)
             return None
+
